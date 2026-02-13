@@ -106,6 +106,8 @@ A curated collection of **Awesome LLM apps built with RAG, AI Agents, Multi-agen
 *   [📊 xAI Finance Agent](starter_ai_agents/xai_finance_agent/)
 *   [🔍 OpenAI Research Agent](starter_ai_agents/opeani_research_agent/)
 *   [🕸️ Web Scraping AI Agent (Local & Cloud SDK)](starter_ai_agents/web_scrapping_ai_agent/)
+*   [💼 Job Search Agent](starter_ai_agents/ai_job_search_agent/)
+*   [📰 News Verification Agent](starter_ai_agents/ai_news_verification_agent/)
 
 ### 🚀 Advanced AI Agents
 *   [🏚️ 🍌 AI Home Renovation Agent with Nano Banana Pro](advanced_ai_agents/multi_agent_apps/ai_home_renovation_agent)
