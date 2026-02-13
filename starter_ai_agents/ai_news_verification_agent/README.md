@@ -9,6 +9,19 @@ An AI-powered news fact-checking agent built using the **uAgents** framework and
 - **Chat Protocol**: Uses the standard uAgents chat protocol, making it compatible with Agentverse and other uAgents-based systems
 - **Simple and Lightweight**: Minimal dependencies with a focused, single-purpose design
 
+### Project Structure
+
+```
+ai_news_verification_agent/
+├── agent.py        # Agent setup, wallet funding, startup event, and entry point
+├── protocols.py    # ASI1 LLM client, verify_news logic, and chat protocol handlers
+├── requirements.txt
+└── README.md
+```
+
+- **`agent.py`** — Creates the uAgent, funds the wallet, logs agent details on startup, includes the chat protocol, and runs the agent.
+- **`protocols.py`** — Defines the ASI1 client, the `verify_news` fact-checking function, and the chat protocol message/acknowledgement handlers.
+
 ### How to Get Started
 
 1. **Clone the repository**

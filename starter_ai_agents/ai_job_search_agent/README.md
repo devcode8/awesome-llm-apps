@@ -11,6 +11,16 @@ An AI-powered job search agent built using the **uAgents** framework and **[ASI1
 - **Structured Output**: Returns formatted job listings with title, company, location, experience, skills, salary, and apply links
 - **Chat Protocol**: Uses the standard uAgents chat protocol, making it compatible with Agentverse and other uAgents-based systems
 
+### Project Structure
+
+```
+ai_job_search_agent/
+├── agent.py        # Agent setup, funding, startup event, and entry point
+├── protocol.py     # Chat protocol, message handlers, job search logic, session management, and query classification
+├── requirements.txt
+└── README.md
+```
+
 ### How to Get Started
 
 1. **Clone the repository**
@@ -26,7 +36,7 @@ An AI-powered job search agent built using the **uAgents** framework and **[ASI1
 
 3. **Configure API Key**
    - Get your ASI1 API key from [ASI1](https://asi1.ai)
-   - Update the `ASI1_API_KEY` variable in `agent.py`
+   - Create a `.env` file and set `ASI1_API_KEY=your_key_here`
 
 4. **Run the agent**
    ```bash
