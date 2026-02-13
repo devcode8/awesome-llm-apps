@@ -1,9 +1,9 @@
 import asyncio
-import mailbox
 import os
 
-import requests
 from dotenv import load_dotenv
+
+from openai import OpenAI
 from uagents import Agent, Context, Protocol
 from uagents_core.contrib.protocols.chat import (
     ChatAcknowledgement,
@@ -17,7 +17,10 @@ from uagents_core.contrib.protocols.chat import (
 load_dotenv()
 
 ASI1_API_KEY = os.getenv("ASI1_API_KEY")
-ASI1_API_URL = "https://api.asi1.ai/v1/chat/completions"
+asi1_client = OpenAI(
+    api_key=ASI1_API_KEY,
+    base_url="https://api.asi1.ai/v1"
+)
 
 SYSTEM_PROMPT = (
     "You are a news fact-checker. Given a news headline or claim, "
@@ -30,23 +33,22 @@ SYSTEM_PROMPT = (
 
 def verify_news(claim: str) -> str:
     """Call ASI1 API with web search enabled to fact-check a news claim."""
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {ASI1_API_KEY}",
-    }
-    payload = {
-        "model": "asi1-mini",
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": claim},
-        ],
-        "web_search": True,
-    }
     try:
-        resp = requests.post(ASI1_API_URL, json=payload, headers=headers, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
-        return data["choices"][0]["message"]["content"]
+        response = asi1_client.chat.completions.create(
+            model="asi1",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": claim},
+            ],
+            temperature=0.2,
+            top_p=0.9,
+            max_tokens=1000,
+            presence_penalty=0,
+            frequency_penalty=0,
+            stream=False,
+            extra_body={"web_search": True},
+        )
+        return response.choices[0].message.content
     except Exception as exc:
         return f"Verification failed: {exc}"
 
@@ -54,7 +56,7 @@ def verify_news(claim: str) -> str:
 # --- Agent setup ---
 agent = Agent(
     name="news_verification_agent",
-    seed="news-verify-secret-seed",
+    seed="news-verify-secret",
     port=8001,
     mailbox=True
 )

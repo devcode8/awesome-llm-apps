@@ -1,11 +1,11 @@
 import asyncio
-import aiohttp
 import re, os
 import traceback
 from datetime import datetime, timezone
 from typing import Dict, Any, List
 from uuid import uuid4
 from dotenv import load_dotenv
+from openai import OpenAI
 from uagents import Agent, Context, Protocol
 from uagents.setup import fund_agent_if_low
 from uagents_core.contrib.protocols.chat import (
@@ -18,13 +18,16 @@ from uagents_core.contrib.protocols.chat import (
 )
 load_dotenv()
 # ASI1 API Configuration
-ASI1_API_URL = "https://api.asi1.ai/v1/chat/completions"
 ASI1_API_KEY = os.getenv("ASI1_API_KEY")
+client = OpenAI(
+    api_key=ASI1_API_KEY,
+    base_url="https://api.asi1.ai/v1"
+)
 
 # Create the agent
 agent = Agent(
     name="job_search_agent",
-    seed="job_search_agent_secret",
+    seed="job_search_agent_secret_",
     port=8000,
     mailbox=True,
 )
@@ -264,11 +267,6 @@ async def analyze_context(query: str, history: List[Dict]) -> str:
     Analyze conversation history to answer context-based questions.
     NO web search - uses only existing conversation data.
     """
-    headers = {
-        "Authorization": f"Bearer {ASI1_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
     # Build messages with full conversation history
     messages = [{"role": "system", "content": CONTEXT_ANALYSIS_PROMPT}]
 
@@ -297,27 +295,21 @@ async def analyze_context(query: str, history: List[Dict]) -> str:
 
     messages.append({"role": "user", "content": analysis_query})
 
-    payload = {
-        "messages": messages,
-        "model": "asi1",
-        "web_search": False  # NO web search for context analysis
-    }
-
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(
-                ASI1_API_URL,
-                headers=headers,
-                json=payload,
-                timeout=aiohttp.ClientTimeout(total=60)
-            ) as response:
-                if response.status == 200:
-                    result = await response.json()
-                    if "choices" in result and len(result["choices"]) > 0:
-                        return result["choices"][0]["message"]["content"]
-                    return "I couldn't analyze the conversation. Please try rephrasing your question."
-                else:
-                    return "Unable to process your question. Please try again."
+        response = client.chat.completions.create(
+            model="asi1",
+            messages=messages,
+            temperature=0.2,
+            top_p=0.9,
+            max_tokens=1000,
+            presence_penalty=0,
+            frequency_penalty=0,
+            stream=False,
+            extra_body={"web_search": False}
+        )
+        if response.choices and len(response.choices) > 0:
+            return response.choices[0].message.content
+        return "I couldn't analyze the conversation. Please try rephrasing your question."
     except Exception:
         return "An error occurred while analyzing. Please try again."
 
@@ -327,11 +319,6 @@ async def search_jobs_with_context(query: str, history: List[Dict]) -> str:
     Search for jobs using the ASI1 API with optimized prompts.
     Includes conversation history for context-aware searches.
     """
-    headers = {
-        "Authorization": f"Bearer {ASI1_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
     # Classify the query
     classification = classify_query(query, history)
 
@@ -360,35 +347,23 @@ async def search_jobs_with_context(query: str, history: List[Dict]) -> str:
 
     messages.append({"role": "user", "content": enhanced_query})
 
-    payload = {
-        "messages": messages,
-        "model": "asi1",
-        "web_search": True
-    }
-
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(
-                ASI1_API_URL,
-                headers=headers,
-                json=payload,
-                timeout=aiohttp.ClientTimeout(total=120)
-            ) as response:
-                if response.status == 200:
-                    result = await response.json()
-                    if "choices" in result and len(result["choices"]) > 0:
-                        return process_job_response(result["choices"][0]["message"]["content"])
-                    return "No job listings found. Try adjusting your search criteria or check back later."
-                elif response.status == 429:
-                    return "Search limit reached. Please wait a moment and try again."
-                elif response.status >= 500:
-                    return "Job search service is temporarily unavailable. Please try again shortly."
-                else:
-                    return "Unable to complete search. Please try rephrasing your query."
+        response = client.chat.completions.create(
+            model="asi1",
+            messages=messages,
+            temperature=0.2,
+            top_p=0.9,
+            max_tokens=1000,
+            presence_penalty=0,
+            frequency_penalty=0,
+            stream=False,
+            extra_body={"web_search": True}
+        )
+        if response.choices and len(response.choices) > 0:
+            return process_job_response(response.choices[0].message.content)
+        return "No job listings found. Try adjusting your search criteria or check back later."
     except asyncio.TimeoutError:
         return "Search is taking longer than expected. Try a more specific query (e.g., add location or specific skills)."
-    except aiohttp.ClientError:
-        return "Network error occurred. Please check your connection and try again."
     except Exception:
         return "An unexpected error occurred. Please try again with a different query."
 

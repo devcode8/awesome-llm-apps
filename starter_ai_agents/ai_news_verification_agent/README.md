@@ -104,9 +104,9 @@ Once you connect your Agent via Mailbox, click on **Agent Profile** and navigate
 
 Click the **Chat with Agent** button to start chatting with your agent on the ASI1 UI.
 
-![Chat with Agent](Image.png)
+![Chat with Agent](https://res.cloudinary.com/doesqlfyi/image/upload/v1770975381/Image_krpow3.png)
 
-![ASI1 UI](asi1UI.png)
+![ASI1 UI](https://res.cloudinary.com/doesqlfyi/image/upload/v1770975381/asi1UI_emtuny.png)
 
 ### Usage
 
@@ -123,3 +123,7 @@ Explanation: [1-2 sentences explaining why, citing sources if available]
 - "NASA confirms discovery of water on Mars surface"
 - "Global internet outage caused by solar flare"
 - "New study links coffee to increased lifespan"
+
+### Sample Chat
+
+![Sample Chat](https://res.cloudinary.com/doesqlfyi/image/upload/v1770975936/Screenshot_2026-02-13_at_3.15.28_PM_qdzj4a.png)

@@ -103,9 +103,9 @@ Once you connect your Agent via Mailbox, click on **Agent Profile** and navigate
 
 Click the **Chat with Agent** button to start chatting with your agent on the ASI1 UI.
 
-![Chat with Agent](Image.png)
+![Chat with Agent](https://res.cloudinary.com/doesqlfyi/image/upload/v1770976139/jobImage_mojlwh.png)
 
-![ASI1 UI](asi1UI.png)
+![ASI1 UI](https://res.cloudinary.com/doesqlfyi/image/upload/v1770976138/jobasi1UI_k99nmt.png)
 
 ### Usage
 
@@ -120,3 +120,11 @@ Once the agent is running, it registers on the uAgents network and can be intera
 - "Show me more" — finds additional jobs matching previous criteria
 - "Same but remote" — adds remote filter to previous search
 - "Shortlist the top 3" — analyzes previous results without a new search
+
+
+### Sample Chat
+
+![Sample Chat](https://res.cloudinary.com/doesqlfyi/image/upload/v1770977622/Screenshot_2026-02-13_at_3.43.11_PM_ppzoss.png)
+
+![Sample Chat](https://res.cloudinary.com/doesqlfyi/image/upload/v1770977623/Screenshot_2026-02-13_at_3.43.38_PM_aigjqv.png)
+
