@@ -1,168 +1,148 @@
+## AI Contract Risk Scanner
 
-# 🏛 AI Contract Risk Scanner
+An AI-powered contract analysis agent built using the **uAgents** framework and **ASI1 LLM**. This agent helps users understand legal agreements, terms of service, and privacy policies by breaking them into clauses, flagging risks, and delivering clear, actionable reports. It enables natural language interactions with session-based memory for context-aware follow-up questions.
 
-ai_contract_risk_scanner
+### Features
 
-![uagents](https://img.shields.io/badge/uagents-4A90E2) ![legal](https://img.shields.io/badge/legal-2E8B57) ![contracts](https://img.shields.io/badge/contracts-4682B4) ![risk](https://img.shields.io/badge/risk-6A5ACD) ![ai](https://img.shields.io/badge/ai-000000) ![openai](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
+- **Comprehensive Contract Analysis**: Analyzes contracts, terms of service, privacy policies, and legal agreements  
+- **Multi-Source Fetching**: Automatically discovers and merges linked legal pages (privacy, refund, DPA, etc.)  
+- **Context-Aware Conversations**: Maintains session history for seamless follow-up questions  
+- **Intelligent Tool Workflow**: Uses specialized tools for fetching, validating, extracting, and reporting  
+- **Clause Extraction**: Identifies and summarizes the most important clauses with risk levels  
+- **Risk Scoring**: Assigns 🟢 low, 🟡 medium, or 🔴 high risk levels to each clause  
+- **Smart Pre-Check**: Validates legal content before full analysis  
+- **Adaptive Reports**: Default concise reports or detailed analysis on request  
+- **Key Risk Flagging**: Highlights financial, arbitration, data, auto-renewal, and termination clauses  
+- **Persistent Memory**: Caches analyses for instant retrieval of previously analyzed contracts  
+- **Structured Output**: Returns professional, scannable risk reports in Markdown  
+- **Chat Protocol**: Uses the standard uAgents chat protocol, making it compatible with Agentverse and other uAgents-based systems  
 
-An AI-powered agent for **analyzing legal contracts, terms of service, and privacy policies**. It breaks down documents into clauses, flags risks, and delivers a clear, concise risk report—helping users understand what they’re signing.
+### Project Structure
 
----
-
-## 🏛 What This Agent Does
-
-The AI Contract Risk Scanner helps users answer questions like:
-
-* *What are the riskiest clauses in this contract?*
-* *Is there an arbitration or auto-renewal clause?*
-* *What’s the overall risk level?*
-* *Can you summarize this privacy policy?*
-* *Is this safe to sign?*
-
-You interact in **natural language**—the agent guides you from raw contract or URL to a professional risk report.
-
----
-
-## 🛠️ How It Works
-
-The agent follows a **legal analysis workflow**:
-
-* Fetches and cleans contract text (from URL or pasted text)
-* Pre-checks for legal content
-* Extracts and analyzes clauses
-* Flags risk levels and key concerns
-* Assembles a scannable, actionable report
-
----
-
-## 🗂️ Contract Analysis Flow
-
-```
-User Input (URL or Text)
-	↓
-Legal Content Pre-check
-	↓
-Clause Extraction & Risk Analysis
-	↓
-Summary & Key Concerns
-	↓
-Final Risk Report Output
+```bash
+contract_risk_scanner/
+├── agent.py
+├── protocol.py
+├── asi1.py
+├── context.md
+├── requirements.txt
+├── pyproject.toml
+└── README.md
 ```
 
-Each step adapts to the **user’s context and follow-up questions**.
+### How to Get Started
 
----
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/contract_risk_scanner.git
+   cd contract_risk_scanner
+   ```
 
-## 🔑 Key Capabilities
+2.	**Install the required dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### 📑 Clause Extraction & Summarization
+3.	**Configure API Key**
+	- Get your ASI1 or LLM provider API key
+	- Create a .env file and set:
+        ```bash
+        ASI1_API_KEY=your_asi1_api_key_here
+        ASI1_BASE_URL=https://api.asi1.ai/v1
+        ASI1_MODEL=asi1
+        ```
 
-* Identifies and summarizes the most important clauses
-* Flags financial, arbitration, data, auto-renewal, and termination clauses
-* Assigns risk levels (🟢 low, 🟡 medium, 🔴 high)
+4.	**Run the agent**
 
----
+    ```bash
+    python agent.py
+    ```
 
-### 🟡 Risk Scoring & Concerns
 
-* Synthesizes overall risk level
-* Lists major concerns and recommended actions
-* Highlights power imbalances, user rights, and financial/data exposure
+5.	**Open the Agent Inspector**
+    After running the agent, you should see something similar in your terminal output:
 
----
+    ```bash
+    INFO:     [contract_risk_scanner_agent]: Starting agent with address: agent1...
+    INFO:     [contract_risk_scanner_agent]: Agent inspector available at https://Agentverse.ai/inspect/?uri=http%3A//127.0.0.1%3A8000
+    INFO:     [contract_risk_scanner_agent]: Starting server on http://0.0.0.0:8000
+    ```
 
-### 🌐 Multi-Source Analysis
+    Click the **Agent Inspector URL** from the terminal output to open the Inspector UI in your browser.
 
-* Fetches linked legal pages (privacy, refund, DPA, etc.) from a given URL
-* Merges multiple sources for comprehensive analysis
+6.	**Publish your agent on Agentverse (Optional)**
+    To publish your agent on the Agentverse, add the `publish=True` parameter and a `README.md` path while defining the agent:
 
----
+    ```python
+    agent = Agent(
+        name="contract-risk-scanner",
+        port=8000,
+        mailbox=True,
+        publish_agent_details=True,
+        readme_path="README.md"
+    )
+    ```
 
-### 🤖 Interactive Q&A
+   This will publish the agent details (like name) on the Agentverse.
 
-* Answers follow-up questions about specific clauses or risks
-* Provides plain-English explanations
-* Supports requests for detailed or summary reports
+   > **Warning: Local Network Access Permission (Chrome Update)**
+   >
+   > Recent Chrome (v142+) and Brave updates introduced a Local Network Access permission prompt. If this permission is not granted, the browser cannot detect locally running agents.
+   >
+   > **Solution:** When prompted with "Allow this site to access devices on your local network", click **Allow**. If you missed the prompt, you can manually enable it in: Chrome Settings → Privacy and Security → Site Settings → Additional permissions → Local network access.
+   >
+   > Reference: [Chrome For Developers Blog – Local Network Access Update](https://developer.chrome.com/blog/local-network-access-update)
 
----
+7.	**Create a Mailbox in Agentverse**
 
-## 💬 How to Use (Natural Conversation)
+   Now that your local Agent is running, you can connect it to Agentverse via a Mailbox:
 
-Just talk to it like a legal assistant:
+   1. Make sure your Agent is running
+   2. Click on the **Local Agent Inspector URL** provided in your terminal output — you will be redirected to the Inspector UI where you can see details about this local Agent
+   3. Click the **Connect** button
 
-```
-"Check this URL: https://example.com/terms"
-```
+      ![Mailbox Connect](https://innovationlab.fetch.ai/resources/assets/images/mailbox-connect-1de25d2539f6f386fe2b17fb777ee8cb.png)
 
-```
-"Paste this contract and tell me the risks."
-```
+   4. You will be presented with 3 choices: **Mailbox**, **Proxy**, and **Custom** — select **Mailbox**
 
-```
-"Which clause is riskiest?"
-```
+      ![Mailbox Options](https://innovationlab.fetch.ai/resources/img/uagents/mailbox-options.png)
 
-```
-"Summarize the report in 5 bullets."
-```
+      ![Mailbox Done](https://innovationlab.fetch.ai/resources/img/uagents/mailbox-done.png)
 
-The agent handles extraction, analysis, and reporting for you.
+   5. You will see some code details for the Agent — you do not need to do anything, just click **Finish**
 
----
+### View your Agent on Agentverse
 
-## 📦 What You Get
+Once you connect your Agent via Mailbox, click on **Agent Profile** and navigate to the **Overview** section of the Agent. Your Agent will appear under local agents on Agentverse.
 
-For each session, the agent provides:
+![Agent Profile](https://innovationlab.fetch.ai/resources/assets/images/agent-profile-ad2d027033e8cf9d7f1e75c0728f480f.png)
 
-* 🏛 Clear clause breakdown
-* 🟡 Risk levels and key concerns
-* 📑 Scannable, actionable report
-* 💡 Plain-English explanations
-* ⚠️ AI-generated, not legal advice
+## Chat with your Agent on ASI1 UI
 
-Built for **real contract review**, not just text output.
+Click the **Chat with Agent** button to start interacting.
 
----
+![Chat with Agent](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257538/image_iyxo4k.png)
 
-## 🏗️ Technology Stack
+![ASI1 UI](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257538/image_copy_2_zp8iwn.png)
 
-* **Agent Framework** – uAgents / LangChain
-* **LLM** – Large Language Model for clause analysis
-* **Prompt Design** – Legal risk logic & reporting
-* **Output Pipeline** – Automated report generation
+### Usage
 
----
+Once the agent is running, it registers on the uAgents network and can be interacted with via the chat protocol.
 
-## 🎯 Ideal Use Cases
+**Example queries**:
+- "Check this URL: https://example.com/terms"
+- "Analyze this privacy policy: [paste text]"
+- "What are the riskiest clauses in this contract?"
+- "Is there an arbitration clause?"
+- "What's the overall risk level of this agreement?"
 
-* Reviewing SaaS terms and privacy policies
-* Analyzing freelance or vendor contracts
-* Student legal research
-* Startup risk assessment
-* Consumer protection
+**Follow-up queries**:
+- "Which clause is riskiest?"
+- "Summarize the report in 5 bullets."
+- "What does the arbitration clause mean?"
+- "Give me the detailed report."
+- "Is this safe to sign?"
 
----
+### Sample Chat
 
-## 🧭 Design Philosophy
-
-This agent is designed to:
-
-* Think like a **legal analyst**
-* Ask the right questions first
-* Prioritize clarity and risk awareness
-* Help users move from **document → understanding → confidence**
-
-The focus is **practical risk insight**, not just clause extraction.
-
----
-
-## ✅ Readiness Status
-
-* 🏛 Ready for contract and policy review
-* 🟡 Strong for SaaS, consumer, and business terms
-* 📑 Demo and prototype ready
-* 🤖 Extensible for advanced features (clause comparison, custom risk rules)
-
----
-
-**Built for clarity. Guided by legal logic. Focused on risk and user protection.** 🏛
+![Sample Chat](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257539/image_copy_4_cgreng.png)

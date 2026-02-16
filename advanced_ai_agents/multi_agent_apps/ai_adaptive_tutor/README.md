@@ -1,395 +1,154 @@
-# 🎓 AI Adaptive Tutor Agent
-
-adaptive_tutor_agent
-
-![uagents](https://img.shields.io/badge/uagents-4A90E2) ![education](https://img.shields.io/badge/education-2E8B57) ![ai](https://img.shields.io/badge/ai-000000) ![learning](https://img.shields.io/badge/learning-6A5ACD) ![langgraph](https://img.shields.io/badge/langgraph-FF6B6B) ![adaptive](https://img.shields.io/badge/adaptive-9B59B6)
-
-An AI-powered adaptive tutoring system that creates **personalized learning experiences**. It analyzes learning goals, builds custom roadmaps, teaches concepts interactively, assesses understanding through adaptive quizzes, and continuously adjusts the plan based on performance—helping learners master any subject efficiently.
-
----
-
-## 🎓 What This Agent Does
-
-The AI Adaptive Tutor helps learners answer questions like:
-
-* *How do I prepare for a specific exam or certification?*
-* *Can you create a personalized learning plan for me?*
-* *Teach me this concept step by step*
-* *Quiz me on what I just learned*
-* *I'm struggling with this topic, can you help?*
-* *How am I progressing toward my goal?*
-
-You interact in **natural language**—the agent guides you from learning goal to mastery with continuous adaptation.
-
----
-
-## 🛠️ How It Works
-
-The agent follows a **multi-agent learning workflow**:
-
-* Researches topics and syllabus structure
-* Creates personalized, time-bound learning roadmaps
-* Teaches concepts with clear explanations and examples
-* Generates adaptive quizzes to assess understanding
-* Evaluates performance and identifies knowledge gaps
-* Continuously adapts the learning plan based on progress
-
----
-
-## 🗂️ Learning Flow
-
-```
-User Learning Goal
-	↓
-Research Agent (Topic Analysis & Syllabus)
-	↓
-Planner Agent (Personalized Roadmap)
-	↓
-Explainer Agent (Interactive Teaching)
-	↓
-Quiz Agent (Adaptive Assessment)
-	↓
-Evaluator Agent (Performance Analysis)
-	↓
-Adaptive Agent (Plan Adjustment)
-	↓
-Continue Learning or Revisit Weak Areas
-```
-
-Each step adapts to the **learner's pace, performance, and preferences**.
-
----
-
-## 🔑 Key Capabilities
-
-### 📚 Intelligent Topic Research
-
-* Analyzes learning goals and exam syllabi
-* Identifies key topics, subtopics, and dependencies
-* Ranks topics by importance and difficulty
-* Estimates time requirements for each topic
-* Creates comprehensive topic maps for structured learning
-
----
-
-### 🗺️ Personalized Learning Roadmaps
-
-* Builds realistic, time-bound learning plans
-* Considers available time, learning pace, and deadlines
-* Incorporates spaced repetition and revision cycles
-* Includes checkpoints for progress assessment
-* Adapts when learners fall behind or accelerate
-
----
-
-### 🎯 Interactive Teaching
-
-* Presents concepts clearly from fundamentals to advanced
-* Uses examples, analogies, and real-world applications
-* Gradually increases complexity as understanding develops
-* Encourages active thinking rather than passive reading
-* Relates new concepts to previously learned material
-
----
-
-### 📝 Adaptive Assessment
-
-* Generates quizzes of varying difficulty
-* Multiple question types: MCQ, short answer, problem-solving, scenarios
-* Increases difficulty when learner performs well
-* Simplifies when learner struggles
-* Tests understanding, not just memorization
-
----
-
-### 📊 Performance Tracking & Adaptation
-
-* Evaluates quiz answers with detailed feedback
-* Identifies knowledge gaps and misconceptions
-* Tracks progress across all topics
-* Continuously adjusts learning plan based on performance
-* Updates learner profile with new insights
-
----
-
-### 💾 Persistent Progress Memory
-
-* Stores learning plans, topic maps, and progress
-* Remembers covered topics and quiz scores
-* Tracks weak areas for targeted revision
-* Maintains learner profile and preferences
-* Supports multi-session learning journeys
-
----
-
-## 💬 How to Use (Natural Conversation)
-
-Just talk to it like a personal tutor:
-
-```
-"I want to prepare for the AWS Solutions Architect exam. I have 3 months."
-```
-
-```
-"Teach me about binary search trees."
-```
-
-```
-"Give me a quiz on what I just learned."
-```
-
-```
-"I don't understand recursion. Can you explain it differently?"
-```
-
-```
-"How am I progressing? When will I be ready for the exam?"
-```
-
-The agent handles research, planning, teaching, assessment, and adaptation for you.
-
----
-
-## 📦 What You Get
-
-For each learning session, the agent provides:
-
-* 🔍 Comprehensive topic research and syllabus analysis
-* 🗺️ Personalized, time-bound learning roadmap
-* 📖 Clear, interactive explanations with examples
-* 📝 Adaptive quizzes that match your skill level
-* 📊 Detailed performance feedback and gap analysis
-* 🔄 Continuous plan adjustments based on your progress
-* 💡 Spaced repetition and revision scheduling
-
-Built for **real learning outcomes**, not just content delivery.
-
----
-
-## 🏗️ Technology Stack
-
-* **Agent Framework** – uAgents for multi-agent orchestration
-* **Agent Workflow** – LangChain & LangGraph for agent coordination
-* **LLM** – Large Language Model for teaching and assessment (ASI1)
-* **Memory System** – Persistent storage for progress and plans
-* **Checkpointing** – In-memory state management for each agent
-* **Streaming** – Real-time progress updates during agent execution
-
----
-
-## 🏛️ Multi-Agent Architecture
-
-The system consists of **7 specialized agents** working together:
-
-1. **Orchestrator Agent** – Main coordinator that manages the workflow and delegates to specialized agents
-2. **Research Agent** – Analyzes learning goals, topics, and syllabus structure
-3. **Planner Agent** – Creates realistic, personalized learning roadmaps
-4. **Explainer Agent** – Teaching component that presents concepts clearly
-5. **Quiz Agent** – Generates assessment tasks of varying difficulty
-6. **Evaluator Agent** – Reviews answers, scores performance, and provides feedback
-7. **Adaptive Agent** – Adjusts learning plan based on performance trends
-
-Each agent has specialized tools and responsibilities, working together to create a seamless learning experience.
-
----
-
-## 🎯 Ideal Use Cases
-
-* Exam and certification preparation (AWS, GCP, academic exams)
-* Self-paced skill development (programming, mathematics, science)
-* Student tutoring and homework help
-* Corporate training and onboarding
-* Language learning and test prep
-* Professional skill enhancement
-* Conceptual understanding and knowledge gaps
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-* Python 3.11+
-* OpenAI API key or compatible LLM provider
-* uAgents framework
-
-### Installation
+## AI Adaptive Tutor Agent
+
+An AI-powered adaptive tutoring agent built using the **uAgents** framework and **ASI1 LLM**. This agent helps learners achieve mastery through personalized learning plans, interactive teaching, adaptive quizzes, and continuous performance-based adjustments. It enables natural language learning experiences with session-based memory for context-aware follow-up interactions.
+
+### Features
+
+- **Personalized Learning Plans**: Creates structured, time-bound roadmaps tailored to learner goals, deadlines, and pace  
+- **Context-Aware Conversations**: Maintains session history so learners can continue learning seamlessly across sessions  
+- **Multi-Agent Workflow**: Uses specialized agents for research, planning, teaching, assessment, and adaptation  
+- **Adaptive Teaching**: Adjusts difficulty and content based on learner performance and knowledge gaps  
+- **Interactive Learning**: Explains concepts step by step with examples and real-world applications  
+- **Smart Assessment**: Generates adaptive quizzes with multiple question types  
+- **Performance Tracking**: Identifies weak areas and provides detailed feedback  
+- **Persistent Memory**: Stores progress, learner profile, and roadmap for long-term learning  
+- **Structured Output**: Returns organized learning plans, quizzes, and feedback  
+- **Chat Protocol**: Uses the standard uAgents chat protocol, making it compatible with Agentverse and other uAgents-based systems  
+
+### Project Structure
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Configuration
-
-1. Copy `.env.example` to `.env` (if provided)
-2. Add your API keys and configuration:
-   ```
-   OPENAI_API_KEY=your_api_key_here
-   ```
-
-### Running the Agent
-
-```bash
-# Using Python
-python agent.py
-```
-
-The agent will start and be ready to accept learning requests via the uAgents chat protocol.
-
----
-
-## 📡 Interaction Methods
-
-The tutor agent supports interaction through:
-
-* **uAgents Chat Protocol** – Standard message-based communication
-* **DeltaV Integration** – Natural language requests via DeltaV
-* **API Integration** – Direct integration into educational platforms
-
-All interactions are session-aware, maintaining context and progress across conversations.
-
----
-
-## 🧭 Design Philosophy
-
-This agent is designed to:
-
-* Think like a **personal tutor**
-* Adapt to each learner's unique pace and style
-* Focus on **understanding**, not memorization
-* Provide continuous feedback and encouragement
-* Break down complex topics into manageable chunks
-* Help learners move from **goal → plan → learning → mastery**
-
-The focus is **effective learning outcomes**, not just content delivery.
-
----
-
-## 🔧 Architecture Highlights
-
-### State Management
-
-* Each agent maintains its own conversation state with checkpointing
-* Progress, plans, and topic maps stored in persistent memory
-* Session-aware multi-turn conversations
-
-### Tool Delegation
-
-* Orchestrator delegates to specialized agents via tools
-* Streaming progress updates for real-time feedback
-* Context propagation across agent boundaries
-
-### Adaptive Learning Loop
-
-1. Assess current understanding
-2. Teach at appropriate level
-3. Quiz to verify comprehension
-4. Evaluate performance
-5. Identify gaps
-6. Adjust plan and difficulty
-7. Repeat
-
----
-
-## 📂 Project Structure
-
-```
-tutor_agent/
-├── agent.py              # Main entry point
-├── protocol.py           # uAgents chat protocol
+adaptive_tutor_agent/
+├── agent.py
+├── protocol.py
 ├── tutor_agent/
-│   ├── orchestrator.py   # Main coordinator agent
-│   ├── research.py       # Topic and syllabus research
-│   ├── planner.py        # Learning roadmap creation
-│   ├── explainer.py      # Concept teaching
-│   ├── quiz.py           # Quiz generation
-│   ├── evaluator.py      # Answer evaluation
-│   ├── adaptive.py       # Plan adaptation
-│   ├── chat.py           # Chat API entry point
-│   ├── context.py        # Shared context schema
-│   ├── store.py          # Memory/storage setup
-│   ├── common_tools.py   # Shared utility tools
-│   └── asi1.py           # LLM client configuration
-└── requirements.txt      # Python dependencies
+│   ├── orchestrator.py
+│   ├── research.py
+│   ├── planner.py
+│   ├── explainer.py
+│   ├── quiz.py
+│   ├── evaluator.py
+│   ├── adaptive.py
+│   ├── chat.py
+│   ├── context.py
+│   ├── store.py
+│   ├── common_tools.py
+│   └── asi1.py
+├── requirements.txt
+└── README.md
 ```
 
----
+### How to Get Started
 
-## 🎨 Learning Experience Philosophy
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/adaptive_tutor_agent.git
+   cd adaptive_tutor_agent
+   ```
 
-### Progressive Complexity
+2.	**Install the required dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-* Start with fundamentals, build toward advanced concepts
-* Each topic references prerequisites
-* Smooth learning curve with gradual difficulty increase
+3.	**Configure API Key**
+	- Get your ASI1 or LLM provider API key
+	- Create a .env file and set:
+        ```bash
+        ASI1_API_KEY=your_asi1_api_key_here
+        ASI1_BASE_URL=https://api.asi1.ai/v1
+        ASI1_MODEL=asi1
+        ```
 
-### Active Learning
+4.	**Run the agent**
 
-* Interactive teaching that encourages thinking
-* Questions embedded in explanations
-* Practice problems before assessments
+    ```bash
+    python agent.py
+    ```
 
-### Spaced Repetition
 
-* Revision cycles built into learning plans
-* Topics revisited at optimal intervals
-* Reinforcement of weak areas
+5.	**Open the Agent Inspector**
+    After running the agent, you should see something similar in your terminal output:
 
-### Mastery-Based Progression
+    ```bash
+    INFO:     [Tutor]: Starting agent with address: agent1...
+    INFO:     [Tutor]: Agent inspector available at https://Agentverse.ai/inspect/?uri=http%3A//127.0.0.1%3A8000
+    INFO:     [Tutor]: Starting server on http://0.0.0.0:8002
+    ```
 
-* Must demonstrate understanding before moving forward
-* Adaptive difficulty ensures optimal challenge
-* Focus on deep comprehension, not speed
+    Click the **Agent Inspector URL** from the terminal output to open the Inspector UI in your browser.
 
----
+6.	**Publish your agent on Agentverse (Optional)**
+    To publish your agent on the Agentverse, add the `publish=True` parameter and a `README.md` path while defining the agent:
 
-## 🌟 Advanced Features
+    ```python
+    agent = Agent(
+        name="adaptive-tutor",
+        port=8000,
+        mailbox=True,
+        publish_agent_details=True,
+        readme_path="README.md"
+    )
+    ```
 
-* **Multi-session continuity** – Pick up where you left off
-* **Performance analytics** – Track progress over time
-* **Weak area targeting** – Extra practice where needed
-* **Flexible pacing** – Adjust speed based on schedule changes
-* **Comprehensive coverage** – No topic left behind
-* **Real-time streaming** – See agent thinking and progress
+   This will publish the agent details (like name) on the Agentverse.
 
----
+   > **Warning: Local Network Access Permission (Chrome Update)**
+   >
+   > Recent Chrome (v142+) and Brave updates introduced a Local Network Access permission prompt. If this permission is not granted, the browser cannot detect locally running agents.
+   >
+   > **Solution:** When prompted with "Allow this site to access devices on your local network", click **Allow**. If you missed the prompt, you can manually enable it in: Chrome Settings → Privacy and Security → Site Settings → Additional permissions → Local network access.
+   >
+   > Reference: [Chrome For Developers Blog – Local Network Access Update](https://developer.chrome.com/blog/local-network-access-update)
 
-## ✅ Readiness Status
+7.	**Create a Mailbox in Agentverse**
 
-* 🎓 Ready for exam preparation and skill development
-* 📚 Strong for structured learning (exams, courses, certifications)
-* 🔄 Adaptive difficulty and continuous improvement
-* 🤖 Demo and production ready
-* 🚀 Extensible for advanced features (collaborative learning, peer comparison)
+   Now that your local Agent is running, you can connect it to Agentverse via a Mailbox:
 
----
+   1. Make sure your Agent is running
+   2. Click on the **Local Agent Inspector URL** provided in your terminal output — you will be redirected to the Inspector UI where you can see details about this local Agent
+   3. Click the **Connect** button
 
-## 🐛 Known Limitations
+      ![Mailbox Connect](https://innovationlab.fetch.ai/resources/assets/images/mailbox-connect-1de25d2539f6f386fe2b17fb777ee8cb.png)
 
-* Web search is currently simulated (integrate actual search API for production)
-* Requires API access to LLM provider
-* Assessment is AI-generated, not validated by subject experts
-* Best suited for conceptual learning, less for hands-on skills
+   4. You will be presented with 3 choices: **Mailbox**, **Proxy**, and **Custom** — select **Mailbox**
 
----
+      ![Mailbox Options](https://innovationlab.fetch.ai/resources/img/uagents/mailbox-options.png)
 
-## 🔮 Future Enhancements
+      ![Mailbox Done](https://innovationlab.fetch.ai/resources/img/uagents/mailbox-done.png)
 
-* Integration with real web search and knowledge bases
-* Visual content generation (diagrams, charts, illustrations)
-* Code execution for programming tutoring
-* Collaborative learning features
-* Integration with learning management systems (LMS)
-* Voice interaction support
-* Mobile app interface
+   5. You will see some code details for the Agent — you do not need to do anything, just click **Finish**
 
----
+### View your Agent on Agentverse
 
-## 📄 License
+Once you connect your Agent via Mailbox, click on **Agent Profile** and navigate to the **Overview** section of the Agent. Your Agent will appear under local agents on Agentverse.
 
-This project is part of the uAgents ecosystem. Please refer to the project repository for licensing information.
+![Agent Profile](https://innovationlab.fetch.ai/resources/assets/images/agent-profile-ad2d027033e8cf9d7f1e75c0728f480f.png)
 
----
+## Chat with your Agent on ASI1 UI
 
-**Built for adaptive learning. Powered by multi-agent AI. Focused on mastery and understanding.** 🎓
+Click the **Chat with Agent** button to start interacting.
+
+![Chat with Agent](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257538/image_copy_rtl3nm.png)
+
+![ASI1 UI](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257538/image_copy_3_wrvucn.png)
+
+### Usage
+
+Once the agent is running, it registers on the uAgents network and can be interacted with via the chat protocol.
+
+**Example queries**:
+- “I want to prepare for the AWS Solutions Architect exam in 3 months.”
+- “Teach me about binary search trees.”
+- “Give me a quiz on recursion.”
+- “I am struggling with dynamic programming. Can you help?”
+
+**Follow-up queries**:
+- “Show my weak areas.”
+- “Revise last week’s topics.”
+- “Increase difficulty.”
+- “Focus more on problem solving.”
+
+### Sample Chat
+
+![Sample Chat](https://res.cloudinary.com/doesqlfyi/image/upload/v1771257539/image_copy_5_lxm8cu.png)
