@@ -1,0 +1,9 @@
+python-dotenv
+uagents
+langchain
+langchain-openai
+langgraph
+beautifulsoup4
+lxml
+async-lru
+httpx
